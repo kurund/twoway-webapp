@@ -7,18 +7,22 @@ import ContentCreate from "./ContentCreate/ContentCreate";
 
 class ContentManager extends Component {
   render() {
-    const contentDisplay = this.props.contents.map((content) => {
-      return (
-        <div>
-          <Content title={content.title} body={content.body} />
-          <br />
-        </div>
-      );
-    });
+    let contentDisplay = "No content to display";
+    if (this.props.contents.length > 0) {
+      contentDisplay = this.props.contents.map((content) => {
+        return (
+          <div key={content.id}>
+            <Content title={content.title} body={content.body} />
+            <br />
+          </div>
+        );
+      });
+    }
+
     return (
       <div>
         <div className={styles.ContentManager}>
-          <p className={styles.Card}>{contentDisplay}</p>
+          <div className={styles.Card}>{contentDisplay}</div>
         </div>
         <div className={styles.ContentForm}>
           <ContentCreate />

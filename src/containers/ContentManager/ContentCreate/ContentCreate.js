@@ -1,10 +1,12 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Input from "../../../components/UI/Input/Input";
 import Button from "../../../components/UI/Button/Button";
 import { updateObject } from "../../../common/utility";
 import { checkValidity } from "../../../common/validations";
 import styles from "./ContentCreate.module.css";
+import { addContent } from "../../../store/actions/content";
 
 class ContentCreate extends Component {
   state = {
@@ -48,6 +50,7 @@ class ContentCreate extends Component {
         formElementIdentifier
       ].value;
     }
+    this.props.onAddContent(formData);
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -116,4 +119,12 @@ class ContentCreate extends Component {
   }
 }
 
-export default ContentCreate;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddContent: (contentData) => {
+      dispatch(addContent(contentData));
+    },
+  };
+};
+
+export default connect(null, mapDispatchToProps)(ContentCreate);
