@@ -1,0 +1,13 @@
+.ContentManager {
+  width: 30%;
+  display: inline-block;
+}
+
+.Card {
+  padding: 10px;
+}
+
+.ContentForm {
+  width: 60%;
+  float: right;
+}
