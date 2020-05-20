@@ -1,29 +1,13 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import Content from "../../components/Content/Content";
 import styles from "./ContentManager.module.css";
 import ContentCreate from "./ContentCreate/ContentCreate";
 
 class ContentManager extends Component {
-  state = {
-    contents: [
-      {
-        title: "content 1",
-        body: "This is test body 1",
-      },
-      {
-        title: "content 2",
-        body: "This is test body 2",
-      },
-      {
-        title: "content 3",
-        body: "This is test body 3",
-      },
-    ],
-  };
-
   render() {
-    const contentDisplay = this.state.contents.map((content) => {
+    const contentDisplay = this.props.contents.map((content) => {
       return (
         <div>
           <Content title={content.title} body={content.body} />
@@ -44,4 +28,10 @@ class ContentManager extends Component {
   }
 }
 
-export default ContentManager;
+const mapStateToProps = (state) => {
+  return {
+    contents: state.contents,
+  };
+};
+
+export default connect(mapStateToProps)(ContentManager);
